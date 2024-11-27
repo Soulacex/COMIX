@@ -1,2 +1,3 @@
 # COMIX
-An app that tracks comic book collections.
+
+Comix is an app used to track a comic book collection.

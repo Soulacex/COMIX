@@ -1,0 +1,82 @@
+Comix is an app used to track a comic book collection.
+
+A comic book has the following attributes. A * indicates that the attribute is optional (may be empty/blank):
+
+
+- Publisher, e.g. "Marvel", "Image", etc.
+- Series Title, e.g. "The Magnificent Ms. Marvel"
+- Volume Number
+- Issue Number
+- Publication Date
+- Creators*
+- Principle Characters* 
+- Description*
+- Value ($$)*
+
+
+The app will provide a searchable database of comics.
+
+The database is immutable - the content of the database cannot be changed by the user.
+
+
+The database provides the following fields:
+
+
+- Series (Title) - may contain volume number, e.g. "Spider-Man, vol. 2". If no volume number is specified, assume that it is volume 1.
+- Issue Number
+- Story Title
+- Publisher
+- Publication (Release) Date
+- Creators
+
+
+The user shall be able to search for comics using partial or exact matches to any field. For example, a partial search for series titles using the term "Hulk" should return comics that have "Hulk" anywhere in the title, e.g. "Hulk", "She-Hulk", "The Incredible Hulk", "The Indestructible Hulk", "The Immortal Hulk", etc.
+
+Searches are always case-insensitive.
+
+The user shall be able to maintain a personal collection by:
+
+- Adding comics from the database
+- Adding comics by manually entering information
+Removing comics
+- Editing the attributes of comics already in the collection
+- Marking a comic as "graded" on a scale of 1 to 10. The value of a graded comic is adjusted according to the following formula:
+  - 1 = value * 0.10
+  - 2-10 = log10(grade) * value
+- Marking a graded comic as "slabbed." This doubles the value of the comic. To be clear, a comic cannot be slabbed unless it is also graded.
+
+The user should be able to browse their personal collection.
+
+The personal collection is organized into a hierarchy:
+-   The entire collection
+- Publishers
+- Series
+-   Volumes
+-   Individual Issues
+
+The following statistics should be displayed at every level while browsing the collection:
+
+-   Number of issues
+-   Value
+
+The user should be able to execute a search for comics in the collection:
+
+-   Any search terms should be matched against any of the following fields: series title, principle characters, creator names, description
+
+
+-   The user should be able to specify whether exact matches are required or if partial matches are acceptable. For example, a partial title search for "Spider-Man" would return comics with titles like "Spider-Man", "The Amazing Spider-Man", "Miles Morales: Spider-Man", "Ultimate Spider-Man" and so on.
+
+
+- Search results should be sortable by:
+    -   Series Title, Volume, & Issue Number (default)
+    -   Publication Date
+
+Additional sort options may be required in later releases
+
+
+## Non-Functional Requirements
+
+The initial version of the application must provide a plain text user interface (PTUI) through which a user may interact with the application using simple, menu-driven commands. There may be requirements for additional user interfaces (e.g. desktop, web, mobile) in future iterations of the product.
+The user's profile must be stored persistently between restarts of the application.
+You have been provided with a database of available comics in CSV format. You may copy the data into another format, but you must maintain all of the data.
+Implementing a "real" database is optional - you may use text/CSV files to store data. If you do implement a real database, your releases must include complete, step-by-step setup instructions.
