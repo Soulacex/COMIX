@@ -31,7 +31,7 @@ class ComicTest {
     @Test
     void testOptionalFields() {
         // Testing optional fields are initially null.
-        assertNull(comic.getCreators());
+        assertTrue(comic.getCreators().isEmpty());
         assertNull(comic.getPrincipleCharacters());
         assertNull(comic.getDescription());
         assertNull(comic.getValue());

@@ -13,7 +13,7 @@ public class Comic {
     private int volumeNumber;
     private int issueNumber;
     private LocalDate publicationDate;
-    private List<String> creators;        // Optional.
+    private List<String> creators = new ArrayList<>();
     private List<String> principleCharacters;  // Optional.
     private String description;           // Optional.  
     private BigDecimal value;            // Optional.
@@ -162,5 +162,20 @@ public class Comic {
                Objects.equals(publisher, comic.publisher) &&
                Objects.equals(seriesTitle, comic.seriesTitle) &&
                Objects.equals(publicationDate, comic.publicationDate);
+    }
+
+    public boolean matches(String query) {
+        if (query == null) {
+            return false; // Handle null query
+        }
+        if (query.trim().isEmpty()) {
+            return true; // Match all comics for empty query
+        }
+        String lowerCaseQuery = query.toLowerCase(); // Convert query to lower case
+        return seriesTitle.toLowerCase().contains(lowerCaseQuery) ||
+               publisher.toLowerCase().contains(lowerCaseQuery) ||
+               String.valueOf(issueNumber).contains(query) || // Issue number comparison remains case-sensitive
+               creators.stream().anyMatch(creator -> creator.toLowerCase().contains(lowerCaseQuery)) ||
+               publicationDate.toString().contains(query); // Publication date comparison remains case-sensitive
     }
 }
